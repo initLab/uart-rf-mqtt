@@ -1,0 +1,20 @@
+{
+	"serial": {
+		"path": "/dev/ttyS0",
+		"options": {
+			"baudRate": 9600
+		}
+	},
+	"mqtt": {
+		"options": {
+			"protocol": "mqtt",
+			"host": "mqtt.example.com",
+			"username": "user",
+			"password": "pass"
+		},
+		"topics": {
+			"subscribePrefix": "rf/in/",
+			"publishPrefix": "rf/out/"
+		}
+	}
+}
