@@ -48,7 +48,8 @@ mqttClient.on('message', function(topic, message, packet) {
 	switch (cmd) {
 		case 'send':
 			let optionalParams = '';
-			
+
+			// noinspection JSObjectNullOrUndefined
 			if (msg.pulseLength) {
 				optionalParams = ' ' + msg.pulseLength;
 			}
@@ -64,6 +65,7 @@ mqttClient.on('message', function(topic, message, packet) {
 			serialSend('SEND ' + msg.protocol + ' ' + msg.numBits + ' ' + msg.value + optionalParams);
 			break;
 		case 'setreceive':
+			// noinspection JSObjectNullOrUndefined
 			serialSend('SETRECEIVE ' + (msg.state ? '1' : '0'));
 			break;
 		case 'ping':
