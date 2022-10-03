@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "mqtt": "^4.2.6",
-    "serialport": "^9.0.7"
+    "serialport": "^9.0.7",
+    "winston": "^3.8.2"
   }
 }
