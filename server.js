@@ -42,11 +42,11 @@ mqttClient.on('connect', function() {
 
 mqttClient.on('message', function(topic, message) {
 	if (topic.indexOf(config.mqtt.topics.subscribePrefix) !== 0) {
-		logger.warn('Unknown topic:', topic);
+		logger.warn('Unknown topic: ' + topic);
 		return;
 	}
 
-	logger.info('MQTT receive:', topic, message.toString());
+	logger.info('MQTT receive: ' + topic + ' ' + message.toString());
 
 	const cmd = topic.substr(config.mqtt.topics.subscribePrefix.length);
 	let msg = null;
@@ -88,7 +88,7 @@ mqttClient.on('message', function(topic, message) {
 			serialSend('PING');
 			break;
 		default:
-			logger.error('Unknown MQTT command:', cmd);
+			logger.error('Unknown MQTT command: ' + cmd);
 			break;
 	}
 });
@@ -99,17 +99,17 @@ mqttClient.subscribe(['send', 'setreceive', 'ping'].map(function(topic) {
 
 function mqttSend(cmd, data) {
 	const topic = config.mqtt.topics.publishPrefix + cmd;
-	logger.info('MQTT send:', topic, data);
+	logger.info('MQTT send: ' + topic + data);
 	mqttClient.publish(topic, data.toString());
 }
 
 function serialSend(data) {
-	logger.info('Serial send:', data);
+	logger.info('Serial send: ' + data);
 	port.write(data + '\n');
 }
 
 parser.on('data', data => {
-	logger.info('Serial receive:', data);
+	logger.info('Serial receive: ' + data);
 	const msgParts = data.split(' ');
 	const cmd = msgParts[0].toLowerCase();
 	const args = msgParts.slice(1);
@@ -136,11 +136,11 @@ parser.on('data', data => {
 			break;
 		case 'error':
 			mqttArgs = null;
-			logger.error('Arduino error:', args);
+			logger.error('Arduino error: ' + args);
 			break;
 		default:
 			mqttArgs = null;
-			logger.error('Unknown command:', cmd, args);
+			logger.error('Unknown command: ' + cmd + ' ' + args);
 			break;
 	}
 
