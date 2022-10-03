@@ -99,7 +99,7 @@ mqttClient.subscribe(['send', 'setreceive', 'ping'].map(function(topic) {
 
 function mqttSend(cmd, data) {
 	const topic = config.mqtt.topics.publishPrefix + cmd;
-	logger.info('MQTT send: ' + topic + data);
+	logger.info('MQTT send: ' + topic + ' ' + data);
 	mqttClient.publish(topic, data.toString());
 }
 
