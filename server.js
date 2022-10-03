@@ -2,7 +2,6 @@
 
 const SerialPort = require('serialport');
 const Readline = SerialPort.parsers.Readline;
-const Ready = SerialPort.parsers.Ready;
 const mqtt = require('mqtt');
 
 const fs = require('fs');
