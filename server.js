@@ -1,19 +1,13 @@
-'use strict';
-
-const SerialPort = require('serialport');
-const Readline = SerialPort.parsers.Readline;
-const mqtt = require('mqtt');
-
-const fs = require('fs');
-const { createLogger, format, transports } = require('winston');
+import { SerialPort } from 'serialport';
+import { ReadlineParser } from '@serialport/parser-readline';
+import mqtt from 'mqtt';
+import { createLogger, format, transports } from 'winston';
+import config from './config.json' with { "type": "json" };
 const { combine, timestamp, printf } = format;
 
-const config = JSON.parse(fs.readFileSync('config.json'));
+const port = new SerialPort(config.serial);
 
-const port = new SerialPort(config.serial.path, Object.assign({}, config.serial.options, {
-	autoOpen: false,
-}));
-const parser = port.pipe(new Readline({
+const parser = port.pipe(new ReadlineParser({
 	delimiter: '\r\n',
 }));
 

@@ -82,7 +82,7 @@
   dependencies:
     "@serialport/parser-delimiter" "12.0.0"
 
-"@serialport/parser-readline@13.0.0":
+"@serialport/parser-readline@13.0.0", "@serialport/parser-readline@^13.0.0":
   version "13.0.0"
   resolved "https://registry.yarnpkg.com/@serialport/parser-readline/-/parser-readline-13.0.0.tgz#624594a1af030949eaea9873a4c50fe6c464f85e"
   integrity sha512-dov3zYoyf0dt1Sudd1q42VVYQ4WlliF0MYvAMA3MOyiU1IeG4hl0J6buBA2w4gl3DOCC05tGgLDN/3yIL81gsA==
